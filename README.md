@@ -1,2 +1,3 @@
-# Projekt-4
-The specifications of the project are yet to be decided. 
+# Projekt-4 Bob The Lawn Eater
+The game is about a lawn mower named Bob, where the purpose is to mow down as much grass as you can in your garden. Throughout your rampage of mowing down grass, there will spawn some garden gnomes which are your sworn enemies, they will try to replant the grass which you worked so hard to mow down. FIGHT THEM! DEFEAT THEM! BECOME THE GNOME DESTROYER! When you have reached max capacity of grass in your lawn mower, then you can proceed to the designated trash can and dump the grass in there to earn some cash which you can use to upgrade and customize your lawn mower. 
+
