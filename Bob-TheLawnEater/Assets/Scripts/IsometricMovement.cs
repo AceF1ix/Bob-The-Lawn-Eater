@@ -57,9 +57,6 @@ public class IsometricMovement : MonoBehaviour
             controller.Move(slide * Time.deltaTime);
         }
 
-
-
-
     }
 
 }
