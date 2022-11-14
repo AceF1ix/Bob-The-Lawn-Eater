@@ -8,11 +8,16 @@ public class GnomeAI : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private enum State {
         Patrol,
+        Find,
         Place,
     }
     private State state;
+    private float gnomePlaceTimer;
+    private bool placeGrass;
     public Transform grassParent;
-    public bool pleaseContinue;
+    private Vector3 target;
+    private GameObject chosenGrass;
+    private bool find;
     
     // Start is called before the first frame update
     void Start()
@@ -28,22 +33,28 @@ public class GnomeAI : MonoBehaviour
     void Update()
     {
         List<GameObject> goneGrass = FindCutGrass();
-        if(goneGrass.Count == 0)
+        if(find)
+        {
+           state = State.Place; 
+        }
+        else if(goneGrass.Count > 0 && !find)
+        {
+            state = State.Find;
+        }
+        else
         {
             state = State.Patrol;
-        }
-        else if(goneGrass.Count > 0 && !pleaseContinue)
-        {
-            state = State.Place;
-            pleaseContinue = true;
         }
 
         switch(state) {
             case State.Patrol:
                 Patrol();
                 break;
+            case State.Find:
+                Find(goneGrass);
+                break;
             case State.Place:
-                Place(goneGrass);
+                Place();
                 break;
         }
     }
@@ -52,29 +63,42 @@ public class GnomeAI : MonoBehaviour
 
     }
 
-    public void Place(List<GameObject> goneGrass){
-        Vector3 target = goneGrass[Random.Range(0, goneGrass.Count)].transform.position;
-        if(Vector3.Distance(transform.position, target) > 1f)
+    public void Find(List<GameObject> goneGrass){
+        for(int i = 0; i < goneGrass.Count; i++)
+        {
+            if(i == 0)
+            {
+                chosenGrass = goneGrass[i];
+            }
+            if(Vector3.Distance(transform.position, goneGrass[i].transform.GetChild(0).gameObject.transform.position) < Vector3.Distance(transform.position, chosenGrass.transform.GetChild(0).gameObject.transform.position))
+            {
+                chosenGrass = goneGrass[i];
+            }
+        }
+        chosenGrass.transform.GetChild(1).gameObject.SetActive(false);
+        target = chosenGrass.transform.GetChild(0).gameObject.transform.position;
+        if(Vector3.Distance(transform.position, target) != 0)
         {
             navMeshAgent.destination = target;
         }
-        else
-        {
-            StartCoroutine(PlaceGrass(goneGrass[Random.Range(0, goneGrass.Count)]));
-        }
+        find = true;
     }
 
-    private IEnumerator PlaceGrass(GameObject grassPatch)
-    {
-        WaitForSeconds wait = new WaitForSeconds(1f);
-
-        while(!grassPatch.activeSelf)
+    public void Place(){
+        if(Vector3.Distance(transform.position, target) < 0.1f)
         {
-            yield return wait;
-            grassPatch.SetActive(true);
+            if(gnomePlaceTimer == 0f)
+            {
+                gnomePlaceTimer = Time.realtimeSinceStartup;
+            }
+            else if(Time.realtimeSinceStartup - gnomePlaceTimer > 0.1f)
+            {
+                chosenGrass.SetActive(true);
+                chosenGrass.transform.GetChild(1).gameObject.SetActive(true);
+                gnomePlaceTimer = 0;
+                find = false;
+            }
         }
-
-        pleaseContinue = false;
     }
 
     public List<GameObject> FindCutGrass()
@@ -82,7 +106,7 @@ public class GnomeAI : MonoBehaviour
         List<GameObject> goneGrass = new List<GameObject>();
         foreach(Transform grass in grassParent)
         {
-            if(!grass.gameObject.activeSelf)
+            if(!grass.gameObject.activeSelf && grass.GetChild(1).gameObject.activeSelf)
             {
                 goneGrass.Add(grass.gameObject);
             }

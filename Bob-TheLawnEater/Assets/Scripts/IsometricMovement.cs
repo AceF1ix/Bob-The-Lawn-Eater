@@ -12,14 +12,23 @@ public class IsometricMovement : MonoBehaviour
     public float friction = 0.1f;
     float turnSmoothVelocity;
     public Transform cam;
+    public AudioManager audio;
+    public Shop2 shop2;
+    private float[] speedUpgrade = new float[]{0.6f, 0.8f, 1f, 1.2f, 1.4f};
+    private float[] sizeUpgrade = new float[]{0f, 0.04f, 0.08f, 0.12f, 0.5f};
 
 
-
+    void Start()
+    {
+        audio.Play("Background music");
+        audio.Play("Lawn-mower-not cutting grass");
+        transform.localScale += new Vector3(sizeUpgrade[shop2.typeRank[3]], sizeUpgrade[shop2.typeRank[3]], sizeUpgrade[shop2.typeRank[3]]);
+    }
 
     // Update is called once per frame
     void Update()
     {
-
+        float realSpeed = generalSpeed * speedUpgrade[shop2.typeRank[1]];
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
@@ -29,17 +38,17 @@ public class IsometricMovement : MonoBehaviour
 
         if(Mathf.Abs(direction.x) > Mathf.Abs(direction.z))
         {
-            speed = generalSpeed / 1.5f;
+            speed = realSpeed / 1.5f;
         }
 
         if(Mathf.Abs(direction.x) < Mathf.Abs(direction.z))
         {
-            speed = generalSpeed * 1f;
+            speed = realSpeed * 1f;
         }
 
         if(Mathf.Abs(direction.x) == Mathf.Abs(direction.z))
         {
-            speed = generalSpeed / 1.3f;
+            speed = realSpeed / 1.3f;
         }
 
 
@@ -56,7 +65,6 @@ public class IsometricMovement : MonoBehaviour
 
             controller.Move(slide * Time.deltaTime);
         }
-
     }
 
 }
