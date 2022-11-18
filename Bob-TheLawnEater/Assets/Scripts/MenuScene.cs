@@ -8,6 +8,7 @@ public class MenuScene : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     public Transform grassParent;
     public Transform waypointParent;
+    public AudioManager audio;
     private List<Transform> waypointsReal = new List<Transform>();
     private Transform[] waypoints;
     private Animator animator;
@@ -16,6 +17,7 @@ public class MenuScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audio.Play("Background music");
         animator = GetComponent<Animator>();
         for (int i = 0; i < waypointParent.childCount; i++)
         {
@@ -28,7 +30,6 @@ public class MenuScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Vector3.Distance(transform.position, target));
         if (Vector3.Distance(transform.position, target) < 1f)
         {
             UpdateWayPointIndex();

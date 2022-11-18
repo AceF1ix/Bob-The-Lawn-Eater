@@ -5148,6 +5148,7 @@ MonoBehaviour:
   grassClipper: {fileID: 1701079201}
   isometricMovement: {fileID: 0}
   player: {fileID: 0}
+  dataPersistenceManager: {fileID: 0}
 --- !u!114 &165376471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14600,6 +14601,7 @@ MonoBehaviour:
   grassClipper: {fileID: 1701079201}
   isometricMovement: {fileID: 0}
   player: {fileID: 0}
+  dataPersistenceManager: {fileID: 0}
 --- !u!1 &492485668
 GameObject:
   m_ObjectHideFlags: 0
@@ -16481,6 +16483,7 @@ MonoBehaviour:
   grassClipper: {fileID: 1701079201}
   isometricMovement: {fileID: 0}
   player: {fileID: 0}
+  dataPersistenceManager: {fileID: 0}
 --- !u!114 &544424298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22940,6 +22943,7 @@ MonoBehaviour:
   grassClipper: {fileID: 0}
   isometricMovement: {fileID: 0}
   player: {fileID: 0}
+  dataPersistenceManager: {fileID: 0}
 --- !u!1 &766243161
 GameObject:
   m_ObjectHideFlags: 0
@@ -27977,6 +27981,7 @@ MonoBehaviour:
   grassClipper: {fileID: 1701079201}
   isometricMovement: {fileID: 0}
   player: {fileID: 0}
+  dataPersistenceManager: {fileID: 0}
 --- !u!114 &919504791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28323,6 +28328,7 @@ MonoBehaviour:
   grassClipper: {fileID: 1701079201}
   isometricMovement: {fileID: 0}
   player: {fileID: 0}
+  dataPersistenceManager: {fileID: 0}
 --- !u!114 &930844261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37947,6 +37953,7 @@ MonoBehaviour:
   grassClipper: {fileID: 1701079201}
   isometricMovement: {fileID: 0}
   player: {fileID: 0}
+  dataPersistenceManager: {fileID: 0}
 --- !u!1 &1242029497
 GameObject:
   m_ObjectHideFlags: 0
@@ -49423,6 +49430,7 @@ MonoBehaviour:
   grassClipper: {fileID: 0}
   isometricMovement: {fileID: 0}
   player: {fileID: 0}
+  dataPersistenceManager: {fileID: 1114040582}
 --- !u!1 &1581213220
 GameObject:
   m_ObjectHideFlags: 0
@@ -51667,6 +51675,7 @@ MonoBehaviour:
   grassClipper: {fileID: 1701079201}
   isometricMovement: {fileID: 0}
   player: {fileID: 0}
+  dataPersistenceManager: {fileID: 0}
 --- !u!114 &1650097919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54651,6 +54660,7 @@ MonoBehaviour:
   grassClipper: {fileID: 1701079201}
   isometricMovement: {fileID: 0}
   player: {fileID: 0}
+  dataPersistenceManager: {fileID: 0}
 --- !u!1 &1781264292
 GameObject:
   m_ObjectHideFlags: 0
@@ -57285,6 +57295,7 @@ MonoBehaviour:
   grassClipper: {fileID: 0}
   isometricMovement: {fileID: 0}
   player: {fileID: 0}
+  dataPersistenceManager: {fileID: 0}
 --- !u!114 &1880336598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64198,6 +64209,7 @@ MonoBehaviour:
   grassClipper: {fileID: 1701079201}
   isometricMovement: {fileID: 1148805831}
   player: {fileID: 1148805826}
+  dataPersistenceManager: {fileID: 0}
 --- !u!1 &2105883376
 GameObject:
   m_ObjectHideFlags: 0

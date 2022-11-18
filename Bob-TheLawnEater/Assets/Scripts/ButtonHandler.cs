@@ -12,6 +12,7 @@ public class ButtonHandler : MonoBehaviour
     public GrassClipper grassClipper;
     public IsometricMovement isometricMovement;
     public GameObject player;
+    public DataPersistenceManager dataPersistenceManager;
     // Start is called before the first frame update
     public void OnClickOpenShop()
     {
@@ -64,6 +65,7 @@ public class ButtonHandler : MonoBehaviour
     
     public void OnClickMenu()
     {
+        dataPersistenceManager.SaveGame();
         SceneManager.LoadScene("Menu");
     }
 
