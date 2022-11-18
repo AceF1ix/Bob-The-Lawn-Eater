@@ -14,8 +14,10 @@ public class IsometricMovement : MonoBehaviour
     public Transform cam;
     public AudioManager audio;
     public Shop2 shop2;
-    private float[] speedUpgrade = new float[]{0.6f, 0.8f, 1f, 1.2f, 1.4f};
-    private float[] sizeUpgrade = new float[]{0f, 0.04f, 0.08f, 0.12f, 0.5f};
+    private float[] speedUpgrade = new float[]{0.6f, 0.8f, 1f, 1.4f, 2f};
+    public float[] sizeUpgrade;
+    public GameObject playerAnimation;
+    private Animator animator;
 
 
     void Start()
@@ -23,6 +25,18 @@ public class IsometricMovement : MonoBehaviour
         audio.Play("Background music");
         audio.Play("Lawn-mower-not cutting grass");
         transform.localScale += new Vector3(sizeUpgrade[shop2.typeRank[3]], sizeUpgrade[shop2.typeRank[3]], sizeUpgrade[shop2.typeRank[3]]);
+        for(int i = shop2.upgrades.Length; i < shop2.contentParent.childCount - shop2.materials.Length; i++)
+        {
+            if(shop2.typeRank[i] == 1)
+            {
+                shop2.cosmetics[i - shop2.upgrades.Length].SetActive(true);
+            }
+        }
+        animator = playerAnimation.GetComponent<Animator>();
+        for (int s = 0; s < shop2.typeRank[3]; s++)
+        {
+            transform.localScale += new Vector3(sizeUpgrade[s], sizeUpgrade[s], sizeUpgrade[s]);
+        }
     }
 
     // Update is called once per frame
@@ -64,6 +78,14 @@ public class IsometricMovement : MonoBehaviour
             Vector3 slide = moveDir * speed;
 
             controller.Move(slide * Time.deltaTime);
+        }
+        if(direction.magnitude != 0f)
+        {
+            animator.SetBool("Run", true);
+        }
+        else
+        {
+            animator.SetBool("Run", false);
         }
     }
 

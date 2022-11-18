@@ -18,11 +18,13 @@ public class GnomeAI : MonoBehaviour
     private Vector3 target;
     private GameObject chosenGrass;
     private bool find;
+    private Animator animator;
     
     // Start is called before the first frame update
     void Start()
     {
         state = State.Patrol;
+        animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
     private void Awake() {
@@ -59,8 +61,9 @@ public class GnomeAI : MonoBehaviour
         }
     }
 
-    public void Patrol(){
-
+    public void Patrol(){ // do nothing
+        animator.SetBool("Run", false);
+        animator.SetBool("Place", false);
     }
 
     public void Find(List<GameObject> goneGrass){
@@ -87,17 +90,24 @@ public class GnomeAI : MonoBehaviour
     public void Place(){
         if(Vector3.Distance(transform.position, target) < 0.1f)
         {
+            animator.SetBool("Place", true);
+            animator.SetBool("Run", false);
             if(gnomePlaceTimer == 0f)
             {
                 gnomePlaceTimer = Time.realtimeSinceStartup;
             }
-            else if(Time.realtimeSinceStartup - gnomePlaceTimer > 0.1f)
+            else if(Time.realtimeSinceStartup - gnomePlaceTimer > 0.2f)
             {
                 chosenGrass.SetActive(true);
                 chosenGrass.transform.GetChild(1).gameObject.SetActive(true);
                 gnomePlaceTimer = 0;
                 find = false;
             }
+        }
+        else
+        {
+            animator.SetBool("Run", true);
+            animator.SetBool("Place", false);
         }
     }
 

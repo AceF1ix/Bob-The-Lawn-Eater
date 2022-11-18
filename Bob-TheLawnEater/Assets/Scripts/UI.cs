@@ -18,8 +18,8 @@ public class UI : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
-        countText.text = (Mathf.Abs(grassClipper.grassClipped / grassClipper.capacity) * 100) + "%";
+    {       
+        countText.text = Mathf.Round((grassClipper.grassClipped / grassClipper.capacity) * 100) + "%";
         moneyText.text = grassClipper.money.ToString();
         grassSlider.value = (grassClipper.grassClipped / grassClipper.capacity);
     }

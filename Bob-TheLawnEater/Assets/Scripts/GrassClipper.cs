@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GrassClipper : MonoBehaviour, IDataPersistence
 {
@@ -14,16 +15,30 @@ public class GrassClipper : MonoBehaviour, IDataPersistence
     public Collider[] hitColliders;
     public GameObject trashCan;
     public AudioManager audio;
+    public GameObject lawnMowerBody;
+    public GameObject lawnMowerWheels;
     public float timer = 0f;
     public float money = 0;
     private float[] capacityUpgrade = new float[]{1f, 2f, 4f, 7f, 15f};
     private float[] moneyUpgrade = new float[]{1f, 2f, 3f, 4f, 5f};
+    public Material goldLawnWheels;
     public Shop2 shop2;
+    public GameObject throwText;
     
     void Start()
     {
         DoRenderer();
         capacity = standardCapacity * capacityUpgrade[shop2.typeRank[2]];
+        // Have gold if bought when game starts
+        for (int i = shop2.upgrades.Length + shop2.cosmetics.Length; i < shop2.contentParent.childCount; i++) // materials
+        {
+            if (shop2.typeRank[i] == 1)
+            {
+                lawnMowerBody.GetComponent<Renderer>().material = shop2.materials[i - (shop2.upgrades.Length + shop2.cosmetics.Length)];
+                lawnMowerWheels.GetComponent<Renderer>().material = shop2.materials[i - (shop2.upgrades.Length + shop2.cosmetics.Length)];
+                break;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -32,17 +47,28 @@ public class GrassClipper : MonoBehaviour, IDataPersistence
         capacity = standardCapacity * capacityUpgrade[shop2.typeRank[2]];
         hitColliders = Physics.OverlapSphere(player.position, radius);
         for (var i = 0; i < hitColliders.Length; i++){
-            if (hitColliders[i].tag == "TrashCan"){
+            if (hitColliders[i].tag == "TrashCan" && grassClipped > 0){
+                throwText.SetActive(true);
                 if(Input.GetKeyDown(KeyCode.F))
                 {
                     ThrowTrash();
                 }
+                break;
+            }
+            else
+            {
+                throwText.SetActive(false);
             }
         }
 
         if(Time.realtimeSinceStartup - timer > 0.2f)
         {
             audio.Stop("Lawn-mower-cutting grass");
+        }
+
+        if(shop2.typeRank[7] == 1)
+        {
+            lawnMowerWheels.GetComponent<Renderer>().material = goldLawnWheels;
         }
     }
 
