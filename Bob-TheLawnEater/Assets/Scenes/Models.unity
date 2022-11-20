@@ -35227,7 +35227,7 @@ MonoBehaviour:
   - Antlers
   - Gold
   - Rainbow
-  typeRank: 000000000000000000000000000000000000000000000000000000000000000000000000
+  typeRank: 010000000200000003000000040000000000000000000000000000000000000000000000
   upgradeCosts: f4010000e8030000b80b000088130000
   singleCosts: 102700008813000030750000204e0000
   materials:
@@ -46279,7 +46279,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492185561}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1492185564
 Camera:
   m_ObjectHideFlags: 0

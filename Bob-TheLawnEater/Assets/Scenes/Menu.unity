@@ -4757,6 +4757,7 @@ MonoBehaviour:
   grassClipper: {fileID: 0}
   isometricMovement: {fileID: 0}
   player: {fileID: 0}
+  dataPersistenceManager: {fileID: 0}
 --- !u!114 &186250406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44656,6 +44657,7 @@ MonoBehaviour:
   grassClipper: {fileID: 0}
   isometricMovement: {fileID: 0}
   player: {fileID: 0}
+  dataPersistenceManager: {fileID: 0}
 --- !u!114 &1718352631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47982,7 +47984,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 5
-  m_BaseOffset: 2.3
+  m_BaseOffset: 2.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &1833291779

@@ -37,7 +37,7 @@ public class GnomeAI : MonoBehaviour
         List<GameObject> goneGrass = FindCutGrass();
         if(find)
         {
-           state = State.Place; 
+            state = State.Place; 
         }
         else if(goneGrass.Count > 0 && !find)
         {

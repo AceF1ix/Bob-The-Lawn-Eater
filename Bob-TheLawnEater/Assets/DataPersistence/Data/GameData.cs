@@ -14,9 +14,7 @@ public class GameData
 
     public GameData()
     {
-        // money
-        this.moneyCount = 0f;
-        // upgrade and cosmetic ranks
-        this.rank = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+        this.moneyCount = 0f; // money
+        this.rank = new int[]{0, 0, 0, 0, 0, 0, 0, 0}; // upgrade and cosmetic ranks
     }
 }
